@@ -141,8 +141,8 @@ Assignment_IITM/
 ### 1. Prerequisites & Authentication
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/Assignment_IITM.git
-cd Assignment_IITM
+git clone https://github.com/Faizaniqbal52/indic-canary-marathi-asr.git
+cd indic-canary-marathi-asr
 
 # Install verified dependencies
 pip install -r requirements.txt
