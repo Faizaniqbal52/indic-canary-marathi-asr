@@ -1,0 +1,17 @@
+{
+  "id": "ac2sny/indic-canary-marathi-lora-fine-tuning",
+  "title": "Indic Canary Marathi LoRA Fine-Tuning",
+  "code_file": "indic_canary_finetune.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "true",
+  "dataset_sources": [
+    "ac2sny/kathbath-marathi-level4"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

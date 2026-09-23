@@ -1,0 +1,11 @@
+{
+  "model": "bodhan-ai/indic-transcribe-core",
+  "task": "automatic-speech-recognition",
+  "language": "mr",
+  "device_used": "cuda",
+  "audio_file": "data/sample_marathi.wav",
+  "audio_duration_seconds": 4.899,
+  "ground_truth": "अबोटाबाद येथे ओसामा बिन लादेनच्या घरात शिरून त्यांनी ओसामाचा खात्मा केला",
+  "baseline_transcription": "अबोटाबाद येथे ओसामा बिन लादेनच्या घरात शिरून त्यांनी ओसामाचा खात्मा केला",
+  "status": "success"
+}

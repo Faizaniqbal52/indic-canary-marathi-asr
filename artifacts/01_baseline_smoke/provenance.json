@@ -1,0 +1,41 @@
+{
+  "experiment_id": "EXP-001",
+  "experiment_type": "baseline_integration_smoke_test",
+  "timestamp": "2026-09-22T19:20:18+05:30",
+  "status": "PASS",
+  "model": {
+    "repo_id": "bodhan-ai/indic-transcribe-core",
+    "architecture": "FastConformer-Transformer (Canary-2 AED)",
+    "parameter_count": "1.22B",
+    "weights_format": "safetensors",
+    "commit_sha": "e083ab7dfeeddcb5c0b4a2d7df53f53e7b0f1537"
+  },
+  "dataset": {
+    "repo_id": "ai4bharat/Kathbath",
+    "subset": "marathi",
+    "split": "valid",
+    "original_filename": "844424931232684-1106-f.m4a"
+  },
+  "audio_properties": {
+    "duration_seconds": 4.899,
+    "sampling_rate": 16000,
+    "channels": 1,
+    "format": "PCM_S16LE"
+  },
+  "results": {
+    "ground_truth": "अबोटाबाद येथे ओसामा बिन लादेनच्या घरात शिरून त्यांनी ओसामाचा खात्मा केला",
+    "model_prediction": "अबोटाबाद येथे ओसामा बिन लादेनच्या घरात शिरून त्यांनी ओसामाचा खात्मा केला",
+    "word_error_rate": 0.0,
+    "character_error_rate": 0.0,
+    "interpretation": "Single-sample integration verification; pipeline and model functional on local GPU"
+  },
+  "environment": {
+    "os": "Windows 11 (64-bit)",
+    "python": "3.12.12",
+    "pytorch": "2.5.1+cu121",
+    "torchaudio": "2.5.1+cu121",
+    "cuda_available": true,
+    "device_name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "vram_total_mib": 4096
+  }
+}

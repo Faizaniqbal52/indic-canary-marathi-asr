@@ -1,0 +1,64 @@
+{
+  "experiment_id": "EXP-005",
+  "experiment_name": "adaptation_strategy_benchmark",
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "total_vram_mb": 4096
+  },
+  "results": [
+    {
+      "strategy": "Top-2 Decoder Layers",
+      "total_parameters": 1221439472,
+      "trainable_parameters": 40926192,
+      "frozen_parameters": 1180513280,
+      "trainable_percent": 3.3507,
+      "avg_forward_ms": 1465.9,
+      "avg_backward_ms": 372.9,
+      "avg_optimizer_ms": 360.2,
+      "avg_total_step_ms": 2199.0,
+      "avg_total_step_s": 2.199,
+      "avg_loss": 2.5788,
+      "avg_gradient_norm": 1.1708,
+      "peak_vram_allocated_mb": 5308.2,
+      "peak_vram_reserved_mb": 5442.0,
+      "checkpoint_size_mb": 156.14,
+      "status": "PASS"
+    },
+    {
+      "strategy": "Top-4 Decoder Layers",
+      "total_parameters": 1221439472,
+      "trainable_parameters": 74519536,
+      "frozen_parameters": 1146919936,
+      "trainable_percent": 6.101,
+      "avg_forward_ms": 1559.3,
+      "avg_backward_ms": 376.8,
+      "avg_optimizer_ms": 629.9,
+      "avg_total_step_ms": 2566.1,
+      "avg_total_step_s": 2.566,
+      "avg_loss": 2.541,
+      "avg_gradient_norm": 1.2308,
+      "peak_vram_allocated_mb": 5820.8,
+      "peak_vram_reserved_mb": 5952.0,
+      "checkpoint_size_mb": 284.31,
+      "status": "PASS"
+    },
+    {
+      "strategy": "LoRA Decoder (r=16, alpha=32)",
+      "total_parameters": 1224585200,
+      "trainable_parameters": 3145728,
+      "frozen_parameters": 1221439472,
+      "trainable_percent": 0.2569,
+      "avg_forward_ms": 1900.8,
+      "avg_backward_ms": 383.2,
+      "avg_optimizer_ms": 39.9,
+      "avg_total_step_ms": 2323.9,
+      "avg_total_step_s": 2.324,
+      "avg_loss": 2.635,
+      "avg_gradient_norm": 0.0506,
+      "peak_vram_allocated_mb": 4837.9,
+      "peak_vram_reserved_mb": 4908.0,
+      "checkpoint_size_mb": 12.07,
+      "status": "PASS"
+    }
+  ]
+}

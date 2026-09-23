@@ -1,0 +1,37 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches & temporary files
+.cache/
+.pytest_cache/
+.ipynb_checkpoints/
+*.tmp
+*.raw
+
+# Hugging Face & Kaggle tokens / credentials
+*token*
+*.key
+kaggle.json
+access_token
+.env
+.env.*
+
+# Large binary checkpoints (stored in Google Drive & outputs, not git)
+outputs/checkpoints/*.pt
+artifacts/*/*.pt
+kaggle/output*/**/*.pt
+*.safetensors
+*.nemo
+*.bin
+google_drive_submission/
+
+# Audio data (large binary WAVs/M4As)
+data/wavs/
+data/smoke_wavs/
+data/kaggle_dataset/wavs/
+data/*.raw
+
+# Kaggle execution outputs
+kaggle/output*/

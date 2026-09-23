@@ -1,0 +1,27 @@
+# Data Profiling Configuration for ai4bharat/Kathbath Marathi
+
+dataset:
+  id: "ai4bharat/Kathbath"
+  language: "marathi"
+  language_code: "mr"
+
+audio_standards:
+  target_sample_rate: 16000
+  channels: 1
+  format: "wav"
+
+filtering_policy:
+  # Training data curation policy (not a hard model constraint)
+  min_duration_seconds: 1.0
+  max_duration_seconds: 15.0
+  min_text_length: 2
+
+profiling_budget:
+  # Statistical profile sample limit (metadata streaming, zero audio download overhead)
+  train_profile_rows: 1500
+  valid_profile_rows: 1500
+  random_seed: 42
+
+output_paths:
+  profile_report_json: "artifacts/02_data_profiling/profile_report.json"
+  profile_summary_md: "artifacts/02_data_profiling/profile_summary.md"

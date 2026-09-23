@@ -1,0 +1,152 @@
+{
+  "dataset": {
+    "id": "ai4bharat/Kathbath",
+    "language": "marathi",
+    "language_code": "mr"
+  },
+  "filtering_policy": {
+    "min_duration_seconds": 1.0,
+    "max_duration_seconds": 15.0,
+    "min_text_length": 2
+  },
+  "train_partition_profile": {
+    "file": "datasets/ai4bharat/Kathbath/marathi/train-00000-of-00038.parquet",
+    "total_rows_in_file": 2213,
+    "rows_profiled": 1500,
+    "empty_transcripts": 0,
+    "duration": {
+      "min": 2.717,
+      "max": 15.674,
+      "mean": 6.631,
+      "median": 6.409,
+      "p10": 4.458,
+      "p90": 9.149,
+      "std": 1.808
+    },
+    "text_words": {
+      "min": 8,
+      "max": 15,
+      "mean": 11.14,
+      "median": 11.0
+    },
+    "speakers": {
+      "unique_count": 42,
+      "speaker_ids": [
+        13,
+        18,
+        40,
+        57,
+        178,
+        208,
+        222,
+        293,
+        294,
+        298,
+        300,
+        363,
+        371,
+        404,
+        427,
+        457,
+        513,
+        542,
+        596,
+        628,
+        670,
+        677,
+        687,
+        882,
+        888,
+        896,
+        915,
+        920,
+        938,
+        943,
+        964,
+        965,
+        966,
+        1106,
+        1114,
+        1118,
+        1128,
+        1129,
+        1130,
+        1137,
+        1172,
+        1185
+      ],
+      "min_utts_per_speaker": 1,
+      "max_utts_per_speaker": 166,
+      "mean_utts_per_speaker": 35.71
+    },
+    "gender_distribution": {
+      "Female": 1500
+    }
+  },
+  "valid_partition_profile": {
+    "file": "datasets/ai4bharat/Kathbath/marathi/valid-00000-of-00001.parquet",
+    "total_rows_in_file": 2378,
+    "rows_profiled": 1500,
+    "empty_transcripts": 0,
+    "duration": {
+      "min": 2.252,
+      "max": 13.746,
+      "mean": 6.459,
+      "median": 6.246,
+      "p10": 4.481,
+      "p90": 8.826,
+      "std": 1.734
+    },
+    "text_words": {
+      "min": 5,
+      "max": 15,
+      "mean": 11.17,
+      "median": 11.0
+    },
+    "speakers": {
+      "unique_count": 18,
+      "speaker_ids": [
+        40,
+        113,
+        161,
+        291,
+        293,
+        421,
+        427,
+        511,
+        527,
+        614,
+        615,
+        861,
+        867,
+        948,
+        978,
+        990,
+        1106,
+        1129
+      ],
+      "min_utts_per_speaker": 22,
+      "max_utts_per_speaker": 130,
+      "mean_utts_per_speaker": 83.33
+    },
+    "gender_distribution": {
+      "Female": 1255,
+      "Male": 245
+    }
+  },
+  "speaker_leakage_audit": {
+    "train_speakers_sampled": 42,
+    "valid_speakers_sampled": 18,
+    "overlapping_speaker_count": 5,
+    "overlapping_speaker_ids": [
+      293,
+      40,
+      1129,
+      427,
+      1106
+    ],
+    "overlap_percentage_of_valid": 27.78,
+    "leakage_detected": true,
+    "implication": "Speaker leakage exists in official splits. We must create an explicitly named derived speaker-disjoint partition for rigorous training."
+  }
+}

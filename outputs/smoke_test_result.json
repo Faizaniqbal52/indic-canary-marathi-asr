@@ -1,0 +1,47 @@
+{
+  "experiment_id": "EXP-004",
+  "experiment_name": "one_batch_training_smoke_test",
+  "status": "PASS",
+  "hardware": {
+    "device": "cuda",
+    "gpu_name": "NVIDIA GeForce RTX 3050 Laptop GPU"
+  },
+  "training_sample": {
+    "audio": "train_00_844424932286711-1185-f.wav",
+    "duration_s": 10.333,
+    "speaker_id": 1185,
+    "text": "पाहता पाहता राज्यात टप्प्याटप्प्यानं महत्त्वाचे व्यवहार आणि पर्यायी जनजीवनही पूर्वपदावर येऊ लागलं"
+  },
+  "tensors": {
+    "input_features": [
+      1,
+      128,
+      1034
+    ],
+    "decoder_input_ids": [
+      1,
+      49
+    ],
+    "labels": [
+      1,
+      49
+    ],
+    "logits": [
+      1,
+      49,
+      7152
+    ]
+  },
+  "metrics": {
+    "computed_loss": 2.6373,
+    "loss_function": "CrossEntropyLoss(ignore_index=-100, label_smoothing=0.1)",
+    "gradient_norm": 1.2858,
+    "trainable_parameters": 40926192,
+    "frozen_parameters": 1187836928
+  },
+  "checkpoint": {
+    "path": "outputs/checkpoints/smoke_checkpoint.pt",
+    "file_size_mb": 156.14,
+    "reload_verified": true
+  }
+}

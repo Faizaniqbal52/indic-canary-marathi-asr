@@ -1,0 +1,35 @@
+{
+  "experiment_id": "EXP-006",
+  "experiment_name": "kaggle_cloud_gpu_replication_smoke_test",
+  "status": "PASS",
+  "cloud_platform": "Kaggle",
+  "kernel_slug": "ac2sny/indic-canary-kaggle-smoke-test",
+  "hardware": {
+    "gpu_name": "Tesla T4",
+    "total_vram_gb": 14.56,
+    "peak_vram_allocated_mb": 4813.1,
+    "peak_vram_reserved_mb": 4862.0,
+    "vram_utilization_percent": 33.05
+  },
+  "model": {
+    "base_model": "bodhan-ai/indic-transcribe-core",
+    "total_parameters": 1224585200,
+    "adaptation_strategy": "LoRA (r=16, alpha=32, target=decoder attention query/value)",
+    "trainable_parameters": 3145728,
+    "trainable_percent": 0.2569
+  },
+  "training_step_telemetry": {
+    "loss": 2.6373,
+    "gradient_norm": 0.0519,
+    "forward_latency_ms": 1134.6,
+    "backward_latency_ms": 95.3,
+    "optimizer_latency_ms": 131.9,
+    "total_step_latency_s": 1.362
+  },
+  "checkpoint": {
+    "filename": "kaggle_smoke_lora.pt",
+    "file_size_mb": 12.07,
+    "state_tensors_count": 192,
+    "reload_verified": true
+  }
+}
