@@ -11,7 +11,7 @@ Please find my submission for the **AI Research Engineer** take-home coding assi
 
 ### Key Links
 * **GitHub Repository:** [https://github.com/Faizaniqbal52/indic-canary-marathi-asr](https://github.com/Faizaniqbal52/indic-canary-marathi-asr)
-* **Google Drive Submission Folder:** `[INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE]`  
+* **Google Drive Submission Folder:** [https://drive.google.com/drive/folders/1STc13nhFeo2_pD9FL3clTzBXPMskG_a5?usp=drive_link](https://drive.google.com/drive/folders/1STc13nhFeo2_pD9FL3clTzBXPMskG_a5?usp=drive_link)  
   *(Contains serialized LoRA checkpoints, JSON training curves, remote terminal execution logs, 100-sample before/after evaluation JSONs, and representative 16 kHz WAV audio files)*
 
 ---

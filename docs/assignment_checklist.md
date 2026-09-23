@@ -38,6 +38,6 @@
 - [x] **GitHub repository pushed, public/accessible:** [https://github.com/Faizaniqbal52/indic-canary-marathi-asr](https://github.com/Faizaniqbal52/indic-canary-marathi-asr)
 - [x] **Technical documentation compiled:** Available in [README.md](../README.md) and [docs/technical_report.md](technical_report.md)
 - [x] **Local Google Drive artifact bundle generated:** Ready in [`google_drive_submission/`](../google_drive_submission/) (37 MB)
-- [ ] Google Drive folder uploaded to Drive with public read access ("Anyone with the link can view").
-- [ ] Google Drive verified in Incognito mode to ensure downloadability of checkpoints and logs.
+- [x] **Google Drive folder uploaded & shared:** [https://drive.google.com/drive/folders/1STc13nhFeo2_pD9FL3clTzBXPMskG_a5?usp=drive_link](https://drive.google.com/drive/folders/1STc13nhFeo2_pD9FL3clTzBXPMskG_a5?usp=drive_link)
+- [x] **Google Drive verified without login (Incognito / HTTP fetch):** Confirmed public access to checkpoints, logs, predictions, and audio samples.
 - [ ] Formal email reply sent with GitHub link, Google Drive link, and executive summary.

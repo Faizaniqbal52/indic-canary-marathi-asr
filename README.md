@@ -5,6 +5,7 @@
 [![Architecture](https://img.shields.io/badge/Architecture-FastConformer--Canary%201.22B-purple.svg)](#architecture)
 [![Adaptation](https://img.shields.io/badge/Adaptation-Decoder%20LoRA%20(r%3D16%2C%20α%3D32)-green.svg)](#empirical-adaptation-benchmark)
 [![Hardware](https://img.shields.io/badge/Hardware-Tesla%20T4%20(14.56%20GB)%20%7C%20RTX%203050%20(4%20GB)-darkred.svg)](#hardware-profiles)
+[![Artifacts & Checkpoints](https://img.shields.io/badge/Google%20Drive-Artifacts%20%26%20Checkpoints-34A853.svg?logo=googledrive&logoColor=white)](https://drive.google.com/drive/folders/1STc13nhFeo2_pD9FL3clTzBXPMskG_a5?usp=drive_link)
 
 > **AI Research Engineer Take-Home Coding Assignment**  
 > **Target:** AI4Bharat / Bodhan AI (IIT Madras)  
