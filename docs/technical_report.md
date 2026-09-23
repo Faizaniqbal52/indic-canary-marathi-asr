@@ -50,7 +50,7 @@ The investigation was structured around six explicit engineering objectives:
 ## 2. Model and Dataset Selection
 
 ### 2.1 Indic-Canary Architecture
-The selected speech foundation model is `bodhan-ai/indic-transcribe-core`, a 1,224,585,200-parameter encoder-decoder network developed by Bodhan AI and AI4Bharat based on the NVIDIA Canary architecture. 
+The selected speech foundation model is `bodhan-ai/indic-transcribe-core`, an encoder-decoder network developed by Bodhan AI and AI4Bharat based on the NVIDIA Canary architecture. The base model contains 1,221,439,472 parameters (1.22B); our target LoRA configuration adds 3,145,728 trainable parameters, yielding 1,224,585,200 parameters including adapters.
 
 The network topology comprises four primary processing stages, illustrated in the architectural topology diagram below:
 1. **Acoustic Front-End:** Converts 16 kHz mono audio into 80-channel log-mel filterbanks using a 25 ms analysis window and a 10 ms hop size. An internal depthwise convolutional subsampling module reduces the temporal sequence length by an initial factor of eight ($8\times$ subsampling), transforming raw acoustic features into dense frame representations.
@@ -283,7 +283,7 @@ For this study, LoRA was configured with:
 * Scaling factor: $\alpha = 32$ (yielding a scaling multiplier of $\frac{\alpha}{r} = 2.0$)
 * Dropout: $0.05$
 * Target modules: Applied to `query_net` and `value_net` across all 24 decoder layers, encompassing both self-attention and cross-attention blocks.
-* Trainable parameters: **3,145,728** (only **0.26%** of the 1,224,585,200 total parameters). All 1,221,439,472 base parameters remained frozen.
+* Trainable parameters: **3,145,728** (only **0.26%** of the 1,224,585,200 total parameters including adapters). All 1,221,439,472 base parameters remained frozen.
 
 ### 6.3 Comparative Hardware Analysis
 The three adaptation strategies were benchmarked during experiment EXP-005 on an NVIDIA GeForce RTX 3050 Laptop GPU (4,096 MiB physical VRAM) using the identical training sample (`train_00_844424932286711-1185-f.wav`, duration: 10.33 s).
@@ -421,7 +421,7 @@ Table 5 summarizes the primary quantitative evaluation metrics on the frozen 100
 *Figure 4: Held-out Marathi ASR Word Error Rate comparing the zero-shot base model (29.40%) against the LoRA fine-tuned checkpoint (31.29%) on the frozen 100-utterance benchmark. Although the fine-tuned model reduced training loss substantially, aggregate WER increased from 29.40% to 31.29% on the frozen benchmark. This divergence motivated the failure analysis in Section 9.*
 
 * **Scientific Finding:** Fine-tuning over 200 steps on 400 utterances yielded a modest increase in aggregate held-out Word Error Rate (+1.89%) and Character Error Rate (+1.22%).
-* **Preservation of Core Representations:** Exactly 62 out of 100 evaluation utterances produced word-for-word identical transcriptions, confirming that low-rank adaptation avoided catastrophic forgetting.
+* **Output Invariance:** Exactly 62 out of 100 evaluation utterances produced word-for-word identical transcriptions between the base and fine-tuned models, indicating that the adaptation left many benchmark outputs unchanged.
 
 ### 8.5 Speaker-Level Analysis
 Evaluating aggregate numbers alone obscures substantial speaker-level variations. Table 6 provides the complete performance breakdown across all 20 benchmark speakers:
@@ -455,7 +455,7 @@ Evaluating aggregate numbers alone obscures substantial speaker-level variations
 
 *Figure 5: Per-speaker Word Error Rate change across all 20 benchmark speakers on the 20-speaker evaluation benchmark (EXP-007). The evaluation benchmark is strictly speaker-disjoint from the derived 400-utterance fine-tuning partition. Negative values indicate acoustic improvements (e.g., Speaker 421: -9.54 pp, Speaker 615: -7.64 pp), while positive values indicate acoustic drift on low-baseline voices.*
 
-The speaker-level breakdown reveals that fine-tuning achieved significant acoustic gains on previously high-error male speakers. Specifically, Speaker 421 improved by 9.54% WER (from 62.49% down to 52.95%), and Speaker 615 improved by 7.64% WER (from 44.02% down to 36.39%). Conversely, certain speakers with very low baseline error (such as Speaker 1106, baseline 13.90%) experienced degradation.
+The speaker-level breakdown reveals that substantial speaker-level WER reductions were observed on previously high-error male speakers. Specifically, Speaker 421 improved by 9.54% WER (from 62.49% down to 52.95%), and Speaker 615 improved by 7.64% WER (from 44.02% down to 36.39%). Conversely, certain speakers with very low baseline error (such as Speaker 1106, baseline 13.90%) experienced degradation.
 
 ### 8.6 Gender-Stratified Analysis
 Table 7 presents performance stratified across demographic gender groups:
@@ -481,7 +481,7 @@ The cross-entropy loss decreased by 45.60% across 200 optimization steps. This r
 * The model effectively minimized token prediction cross-entropy over the 400 training utterances.
 
 ### 9.2 Why Aggregate Word Error Rate Did Not Improve
-Despite the substantial 45.60% loss reduction, aggregate held-out Word Error Rate increased from 29.40% to 31.29% (+1.89%). This divergence between loss convergence and generalization metric is attributed to three primary factors:
+Despite the substantial 45.60% loss reduction, aggregate held-out Word Error Rate increased from 29.40% to 31.29% (+1.89%). This divergence between loss convergence and generalization metric is plausibly explained by three factors consistent with the observed behavior:
 1. **Limited Sample Diversity:** Adapting a 1.22-billion-parameter foundation model on 400 utterances (approximately 43 minutes of audio) across only 40 speakers provides insufficient phonetic variety. The network adapted to the acoustic idiosyncrasions of those 40 training voices rather than learning broad generalizable acoustic representations.
 2. **Subword Prior Shift:** Fine-tuning shifted the decoder language model priors toward the specific sentence structures and vocabulary distributions of the 400 training samples. When presented with unseen vocabulary in the held-out benchmark, greedy decoding exhibited slight probability mass redistribution across phonetically similar subwords.
 3. **Phonetic Boundary Drift:** The base model was pre-trained on thousands of hours of audio. Short-horizon adaptation (200 steps) slightly shifted emission alignments on certain clean voices, while simultaneously correcting severe misalignments on previously degraded voices.
