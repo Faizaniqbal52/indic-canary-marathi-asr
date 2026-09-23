@@ -6,11 +6,12 @@
 [![Adaptation](https://img.shields.io/badge/Adaptation-Decoder%20LoRA%20(r%3D16%2C%20α%3D32)-green.svg)](#empirical-adaptation-benchmark)
 [![Hardware](https://img.shields.io/badge/Hardware-Tesla%20T4%20(14.56%20GB)%20%7C%20RTX%203050%20(4%20GB)-darkred.svg)](#hardware-profiles)
 [![Artifacts & Checkpoints](https://img.shields.io/badge/Google%20Drive-Artifacts%20%26%20Checkpoints-34A853.svg?logo=googledrive&logoColor=white)](https://drive.google.com/drive/folders/1STc13nhFeo2_pD9FL3clTzBXPMskG_a5?usp=drive_link)
+[![Technical Report](https://img.shields.io/badge/Technical%20Report-PDF%20(8%20Pages)-red.svg?logo=adobeacrobatreader&logoColor=white)](docs/Faizan_Iqbal_Technical_Report.pdf)
 
 > **AI Research Engineer Take-Home Coding Assignment**  
 > **Target:** AI4Bharat / Bodhan AI (IIT Madras)  
 > **Faculty / Lead:** Prof. Mitesh M. Khapra  
-> **Author:** AI Research Engineer Candidate  
+> **Author:** Faizan Iqbal  
 
 ---
 
@@ -181,3 +182,14 @@ python scripts/07_analyze_finetune_results.py
 1. **Speaker Leakage in Official Splits:** A critical discovery was that the official Kathbath validation set shares all 20 speakers with the training set. By enforcing strict speaker-disjoint filtering, our evaluation reflects true generalization rather than speaker acoustic memorization.
 2. **Shard Demographic Clustering:** Kathbath shards are partitioned by speaker gender. Sampling without shard stratification leads to 100% gender skew; multi-shard demographic balancing is mandatory for fair ASR benchmarking.
 3. **PEFT Viability for 1B+ ASR:** LoRA attention adaptation achieves full-depth representation steering with 99.74% frozen parameters, providing substantial parameter efficiency without numerical degradation.
+
+---
+
+## Technical Report & Documentation
+
+- **Formal Technical Report (PDF):** [`docs/Faizan_Iqbal_Technical_Report.pdf`](docs/Faizan_Iqbal_Technical_Report.pdf) *(8-page academic research report formatted for Prof. Mitesh M. Khapra / Bodhan AI)*
+- **Technical Report (Markdown):** [`docs/technical_report.md`](docs/technical_report.md)
+- **Qualitative Linguistic Diff Analysis:** [`artifacts/07_finetune_results/qualitative_analysis.md`](artifacts/07_finetune_results/qualitative_analysis.md)
+- **Assignment Submission Checklist:** [`docs/assignment_checklist.md`](docs/assignment_checklist.md)
+- **Google Drive Submission Bundle:** [https://drive.google.com/drive/folders/1STc13nhFeo2_pD9FL3clTzBXPMskG_a5?usp=drive_link](https://drive.google.com/drive/folders/1STc13nhFeo2_pD9FL3clTzBXPMskG_a5?usp=drive_link)
+
