@@ -1,7 +1,7 @@
 # Final Submission Email Draft
 
 **To:** Prof. Mitesh M. Khapra / AI4Bharat Hiring Team  
-**Subject:** AI Research Engineer Assignment Submission — Faizan Iqbal  
+**Subject:** AI Research Engineer Assignment Submission - Faizan Iqbal  
 
 ---
 
@@ -11,7 +11,7 @@ Please find my submission for the **AI Research Engineer** take-home coding assi
 
 ### Key Links
 * **GitHub Repository:** [https://github.com/Faizaniqbal52/indic-canary-marathi-asr](https://github.com/Faizaniqbal52/indic-canary-marathi-asr)
-* **Technical Report (PDF):** [Faizan_Iqbal_Technical_Report.pdf](https://github.com/Faizaniqbal52/indic-canary-marathi-asr/raw/main/docs/Faizan_Iqbal_Technical_Report.pdf) *(8-page academic research report)*
+* **Technical Report (PDF):** [Faizan_Iqbal_Technical_Report.pdf](https://github.com/Faizaniqbal52/indic-canary-marathi-asr/raw/main/docs/Faizan_Iqbal_Technical_Report.pdf) *(16-page formal academic technical report with 5 empirical figures)*
 * **Google Drive Submission Folder:** [https://drive.google.com/drive/folders/1STc13nhFeo2_pD9FL3clTzBXPMskG_a5?usp=drive_link](https://drive.google.com/drive/folders/1STc13nhFeo2_pD9FL3clTzBXPMskG_a5?usp=drive_link)  
   *(Contains serialized LoRA checkpoints, JSON training curves, remote terminal execution logs, 100-sample before/after evaluation JSONs, and representative 16 kHz WAV audio files)*
 
@@ -37,7 +37,7 @@ Please find my submission for the **AI Research Engineer** take-home coding assi
    * **Engineering vs Metric Takeaway:** The run successfully validates the end-to-end training, loss masking (`ignore_index = -100` on Indic prompt prefixes), backpropagation, and checkpointing mechanics. While a limited 400-utterance adaptation did not improve aggregate held-out WER (29.40% $\to$ 31.29%), it achieved substantial acoustic generalization on previously high-error male voices (**Speaker 421: -9.54% WER reduction**; **Speaker 615: -7.64% WER reduction**) and narrowed the demographic gender gap by **1.20%**.
    * Detailed linguistic diffs confirmed enhanced Marathi case marker inflection (`विभक्ती प्रत्यय`), compound word spacing, and acoustic disambiguation.
 
-A comprehensive 8-page technical report documenting the reverse-engineering analysis, mathematical formulations, hardware profiling, failure mode analyses, and qualitative samples is attached and also available in [`docs/Faizan_Iqbal_Technical_Report.pdf`](https://github.com/Faizaniqbal52/indic-canary-marathi-asr/raw/main/docs/Faizan_Iqbal_Technical_Report.pdf) and [`docs/technical_report.md`](https://github.com/Faizaniqbal52/indic-canary-marathi-asr/blob/main/docs/technical_report.md).
+A comprehensive 16-page technical report documenting the reverse-engineering analysis, mathematical formulations, hardware profiling, failure mode analyses, and qualitative samples is attached and also available in [`docs/Faizan_Iqbal_Technical_Report.pdf`](https://github.com/Faizaniqbal52/indic-canary-marathi-asr/raw/main/docs/Faizan_Iqbal_Technical_Report.pdf) and [`docs/technical_report.md`](https://github.com/Faizaniqbal52/indic-canary-marathi-asr/blob/main/docs/technical_report.md).
 
 Thank you for the opportunity to work on this exciting take-home project. I look forward to discussing the architecture, engineering decisions, and findings with the team.
 

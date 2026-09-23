@@ -17,8 +17,10 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, KeepTogether, HRFlowable, Preformatted
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, KeepTogether, HRFlowable, Preformatted,
+    Image as RLImage
 )
+from PIL import Image as PILImage
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -664,6 +666,43 @@ def compile_pdf(source_md_path, target_pdf_path):
             if stripped and not stripped.startswith('---'):
                 cleaned = clean_markdown_inline(stripped)
                 abstract_paras.append(cleaned)
+            i += 1
+            continue
+
+        # Markdown Image: ![Alt text](path)
+        img_match = re.match(r'^!\[(.*?)\]\((.*?)\)$', line.strip())
+        if img_match:
+            alt_text = img_match.group(1)
+            img_rel_path = img_match.group(2)
+            if os.path.isabs(img_rel_path):
+                img_path = img_rel_path
+            else:
+                img_path = os.path.normpath(os.path.join(os.path.dirname(source_md_path), img_rel_path))
+            
+            if os.path.exists(img_path):
+                with PILImage.open(img_path) as pil_img:
+                    orig_w, orig_h = pil_img.size
+                
+                target_w = min(printable_w, 430.0)
+                aspect = orig_h / orig_w
+                target_h = target_w * aspect
+                
+                if target_h > 215.0:
+                    target_h = 215.0
+                    target_w = target_h / aspect
+                
+                rl_img = RLImage(img_path, width=target_w, height=target_h)
+                rl_img.hAlign = 'CENTER'
+                
+                fig_flowables = [Spacer(1, 4), rl_img, Spacer(1, 2.5)]
+                if i + 1 < len(lines) and lines[i+1].strip().startswith('*Figure ') and lines[i+1].strip().endswith('*'):
+                    cap_text = lines[i+1].strip().strip('*').strip()
+                    clean_cap = clean_markdown_inline(cap_text)
+                    fig_flowables.append(Paragraph(f"<b>{clean_cap}</b>", caption_style))
+                    fig_flowables.append(Spacer(1, 4))
+                    i += 1
+                
+                story.append(KeepTogether(fig_flowables))
             i += 1
             continue
 

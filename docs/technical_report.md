@@ -52,14 +52,14 @@ The investigation was structured around six explicit engineering objectives:
 ### 2.1 Indic-Canary Architecture
 The selected speech foundation model is `bodhan-ai/indic-transcribe-core`, a 1,224,585,200-parameter encoder-decoder network developed by Bodhan AI and AI4Bharat based on the NVIDIA Canary architecture. 
 
-The network topology comprises four primary processing stages, illustrated in Figure 1:
+The network topology comprises four primary processing stages, illustrated in the architectural topology diagram below:
 1. **Acoustic Front-End:** Converts 16 kHz mono audio into 80-channel log-mel filterbanks using a 25 ms analysis window and a 10 ms hop size. An internal depthwise convolutional subsampling module reduces the temporal sequence length by an initial factor of eight ($8\times$ subsampling), transforming raw acoustic features into dense frame representations.
 2. **FastConformer Acoustic Encoder:** Consists of 17 Conformer blocks with hidden dimension $d_{\text{model}} = 1024$. Each block interleaves depthwise separable convolutions, multi-head self-attention, and feed-forward networks with Macaron-style half-step connections, capturing both broad acoustic context and localized phonetic transitions.
 3. **Transformer Autoregressive Decoder:** Comprises 24 standard Transformer decoder layers with hidden dimension $d_{\text{model}} = 1024$, 16 attention heads, and an intermediate feed-forward dimension of 4096. The decoder incorporates both causal masked self-attention over previously emitted tokens and cross-attention over the acoustic encoder representations.
 4. **Vocabulary Projection Head:** A linear language modeling head (`lm_head`) projecting 1024-dimensional hidden states to 7,152 output logits, corresponding to the SentencePiece subword vocabulary specialized for Indic languages.
 
 ```
-Figure 1: Architectural Topology of Indic-Canary 1.22B Foundation Model
+Diagram 1: Architectural Topology of Indic-Canary 1.22B Foundation Model
 
   Raw Audio Input (16 kHz Mono WAV)
                  │
@@ -192,10 +192,10 @@ $$\mathcal{S}_{\text{train\_exclusive}} \cap \mathcal{S}_{\text{val\_benchmark}}
 
 Out of 123 training speakers, exactly 103 speakers never appear in the validation set. All training subsets for this study were sampled strictly from these 103 exclusive speakers, ensuring zero speaker leakage against the evaluation benchmark. This invariant was verified programmatically in code: `assert len(train_speakers & val_speakers) == 0`.
 
-Figure 2 illustrates the partitioning methodology:
+The schema below illustrates the partitioning methodology:
 
 ```
-Figure 2: Dataset Partitioning and Leakage-Guarded Sampling Workflow
+Schema 1: Dataset Partitioning and Leakage-Guarded Sampling Workflow
 
 Kathbath Marathi Corpus (86,448 utterances)
   │
@@ -308,6 +308,14 @@ Table 2 presents the empirical measurements across all three strategies:
 | **Checkpoint File Size** | 156.14 MB | 284.31 MB | **12.07 MB (~92% reduction)** |
 | **Reload State Verification** | PASS (56 tensors) | PASS (108 tensors) | **PASS (192 tensors)** |
 
+![Figure 1: Trainable Parameters Across Adaptation Strategies](figures/fig1_trainable_parameters.png)
+
+*Figure 1: Trainable parameters across adaptation strategies (EXP-005). LoRA adapts all 24 decoder layers with only 3.15M trainable parameters, representing a 95.8% reduction compared to Top-4 unfreezing (74.5M parameters).*
+
+![Figure 2: Checkpoint Footprint Across Adaptation Strategies](figures/fig2_checkpoint_footprint.png)
+
+*Figure 2: Checkpoint serialization footprint across adaptation strategies (EXP-005). LoRA adapter checkpoint size is 12.07 MB, representing an ~92% reduction compared to Top-2 (156.14 MB) and an ~96% reduction compared to Top-4 (284.31 MB).*
+
 ### 6.4 Adaptation Strategy Selection
 LoRA was selected as the definitive fine-tuning strategy based on three technical arguments:
 1. **Full Sequence Depth Coverage:** Top-layer tuning modifies only the highest layers, leaving acoustic cross-attention in the first 20 decoder layers completely unchanged. LoRA adapts self-attention and cross-attention matrices across all 24 decoder layers simultaneously.
@@ -382,6 +390,10 @@ Table 4 details the empirical training telemetry recorded at regular step interv
 | **Step 170** (Minimum Loss) | $1.64 \times 10^{-5}$ | **1.6160** | 0.1325 | 4,875.8 MB | 125.9 s |
 | **Step 200** (Final Step) | $1.00 \times 10^{-5}$ | 1.6670 | 0.0967 | 4,875.8 MB | 146.4 s |
 
+![Figure 3: Training Loss Trajectory Across 200 Optimization Steps](figures/fig3_training_loss_curve.png)
+
+*Figure 3: Training cross-entropy loss trajectory across 200 optimization steps on Kaggle Tesla T4 (EXP-007). Loss decreased by 45.60% relative from 3.0641 to 1.6670, reaching a minimum of 1.6160 at step 170 before a minor inflection to 1.6670 at step 200.*
+
 The cross-entropy loss decreased from an initial value of 3.0641 down to 1.6670, representing a net relative loss reduction of **45.60%**. The lowest observed loss was 1.6160 at step 170. Total wall-clock training time was 146.4 seconds (2.44 minutes), achieving a sustained throughput of 5.46 utterances per second.
 
 ### 8.2 Gradient and Memory Behaviour
@@ -403,6 +415,10 @@ Table 5 summarizes the primary quantitative evaluation metrics on the frozen 100
 | **Improved Utterances** | N/A | **11 / 100 (11.0%)** | N/A |
 | **Unchanged Utterances** | N/A | **62 / 100 (62.0%)** | N/A |
 | **Shifted or Degraded Utterances** | N/A | 27 / 100 (27.0%) | N/A |
+
+![Figure 4: Held-Out Marathi ASR: Base vs. Fine-Tuned WER](figures/fig4_base_vs_finetuned_wer.png)
+
+*Figure 4: Held-out Marathi ASR Word Error Rate comparing the zero-shot base model (29.40%) against the LoRA fine-tuned checkpoint (31.29%) on the frozen 100-utterance benchmark. Although the fine-tuned model reduced training loss substantially, aggregate WER increased from 29.40% to 31.29% on the frozen benchmark. This divergence motivated the failure analysis in Section 9.*
 
 * **Scientific Finding:** Fine-tuning over 200 steps on 400 utterances yielded a modest increase in aggregate held-out Word Error Rate (+1.89%) and Character Error Rate (+1.22%).
 * **Preservation of Core Representations:** Exactly 62 out of 100 evaluation utterances produced word-for-word identical transcriptions, confirming that low-rank adaptation avoided catastrophic forgetting.
@@ -434,6 +450,10 @@ Evaluating aggregate numbers alone obscures substantial speaker-level variations
 | **Spk 867** | Female | 5 | 39.02% | 45.28% | +6.26% | Degraded |
 | **Spk 1106** | Female | 5 | 13.90% | 22.99% | +9.09% | Degraded |
 | **Spk 161** | Male | 5 | 36.67% | 47.67% | +11.00% | Degraded |
+
+![Figure 5: Per-Speaker WER Change on the 20-Speaker Evaluation Benchmark](figures/fig5_per_speaker_wer_delta.png)
+
+*Figure 5: Per-speaker Word Error Rate change across all 20 benchmark speakers on the 20-speaker evaluation benchmark (EXP-007). The evaluation benchmark is strictly speaker-disjoint from the derived 400-utterance fine-tuning partition. Negative values indicate acoustic improvements (e.g., Speaker 421: -9.54 pp, Speaker 615: -7.64 pp), while positive values indicate acoustic drift on low-baseline voices.*
 
 The speaker-level breakdown reveals that fine-tuning achieved significant acoustic gains on previously high-error male speakers. Specifically, Speaker 421 improved by 9.54% WER (from 62.49% down to 52.95%), and Speaker 615 improved by 7.64% WER (from 44.02% down to 36.39%). Conversely, certain speakers with very low baseline error (such as Speaker 1106, baseline 13.90%) experienced degradation.
 

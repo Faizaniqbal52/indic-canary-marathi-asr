@@ -1,6 +1,6 @@
 # Assignment Submission Checklist & Contract
 
-**Role:** AI Research Engineer — Bodhan AI / AI4Bharat (IIT Madras)  
+**Role:** AI Research Engineer : Bodhan AI / AI4Bharat (IIT Madras)  
 **Supervisor:** Prof. Mitesh Khapra  
 **Submission Deadline:** September 24, 2026 by 6:00 PM IST  
 **Status:** READY FOR SUBMISSION (All 7 Experimental Phases, Codebase, Checkpoints & PDF Verified)
@@ -25,11 +25,11 @@
 
 > *"This assignment is not scored on model performance or evaluation metrics. We want to see whether you can get a fine-tuning pipeline working end-to-end, how you structure and write your code, and the effort, judgement, and problem-solving you bring to the training process."*
 
-- [x] **Criterion 1: Pipeline Integrity** — Establish verifiable end-to-end flow from raw data ingestion to loss convergence and inference.
-- [x] **Criterion 2: Code Architecture** — Modular Python package structure with separation of concerns (`data`, `models`, `training`, `evaluation`).
-- [x] **Criterion 3: Engineering Judgement** — Profile compute constraints (4GB VRAM local vs 15GB+ cloud), inspect architecture limitations (inference-only HF wrapper discovered), and audit dataset splits before training.
-- [x] **Criterion 4: Reproducibility** — Explicit configuration files (`configs/*.yaml`), deterministic random seeds, pinned dependencies (`requirements.txt`), and step-by-step reproduction instructions.
-- [x] **Criterion 5: Transparent Failure Analysis** — Document all real-world obstacles encountered (gated authentication, Windows DLL dependencies, model port restrictions) and their engineering solutions.
+- [x] **Criterion 1: Pipeline Integrity:** Establish verifiable end-to-end flow from raw data ingestion to loss convergence and inference.
+- [x] **Criterion 2: Code Architecture:** Modular Python package structure with separation of concerns (`data`, `models`, `training`, `evaluation`).
+- [x] **Criterion 3: Engineering Judgement:** Profile compute constraints (4GB VRAM local vs 15GB+ cloud), inspect architecture limitations (inference-only HF wrapper discovered), and audit dataset splits before training.
+- [x] **Criterion 4: Reproducibility:** Explicit configuration files (`configs/*.yaml`), deterministic random seeds, pinned dependencies (`requirements.txt`), and step-by-step reproduction instructions.
+- [x] **Criterion 5: Transparent Failure Analysis:** Document all real-world obstacles encountered (gated authentication, Windows DLL dependencies, model port restrictions) and their engineering solutions.
 
 ---
 
