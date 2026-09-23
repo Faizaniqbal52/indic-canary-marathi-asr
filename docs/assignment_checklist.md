@@ -35,8 +35,9 @@
 
 ## 3. Submission Protocol Checkpoints (Before 24th Sept, 6:00 PM)
 
-- [ ] GitHub repository pushed, public/accessible, clean `.gitignore` (no credentials, no 5GB binary checkpoints).
-- [ ] Google Drive folder created with public read access ("Anyone with the link can view").
+- [x] **GitHub repository pushed, public/accessible:** [https://github.com/Faizaniqbal52/indic-canary-marathi-asr](https://github.com/Faizaniqbal52/indic-canary-marathi-asr)
+- [x] **Technical documentation compiled:** Available in [README.md](../README.md) and [docs/technical_report.md](technical_report.md)
+- [x] **Local Google Drive artifact bundle generated:** Ready in [`google_drive_submission/`](../google_drive_submission/) (37 MB)
+- [ ] Google Drive folder uploaded to Drive with public read access ("Anyone with the link can view").
 - [ ] Google Drive verified in Incognito mode to ensure downloadability of checkpoints and logs.
-- [ ] Technical documentation compiled into `docs/technical_report.md` and exported as a clean PDF if needed.
-- [ ] Formal email reply prepared with GitHub link, Google Drive link, and executive summary.
+- [ ] Formal email reply sent with GitHub link, Google Drive link, and executive summary.
